@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora | Fashion for Everyone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #fffafd;
+        color: #30232a;
+        line-height: 1.6;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+    }
+
+    /* Navbar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 7%;
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 12px #e9cbd6;
+    }
+
+    .logo {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .logo span {
+        color: #e879a9;
+    }
+
+    .navbar nav {
+        display: flex;
+        gap: 22px;
+    }
+
+    .navbar nav a:hover {
+        color: #d64f8a;
+    }
+
+    .nav-button,
+    .btn {
+        background: #e879a9;
+        color: white;
+        padding: 12px 23px;
+        border-radius: 25px;
+        display: inline-block;
+        transition: 0.3s;
+    }
+
+    .nav-button:hover,
+    .btn:hover {
+        background: #c94f83;
+    }
+
+    /* Hero */
+    .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 40px;
+        padding: 65px 7%;
+        background: linear-gradient(120deg, #fff4f8, #ffe4ef);
+    }
+
+    .eyebrow {
+        color: #c94f83;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 5vw, 68px);
+        line-height: 1.15;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+        color: #d64f8a;
+    }
+
+    .hero-text {
+        color: #777078;
+        margin-bottom: 25px;
+        max-width: 420px;
+    }
+
+    .hero-image {
+        position: relative;
+    }
+
+    .hero-image>img {
+        height: 420px;
+        border-radius: 180px 180px 15px 15px;
+    }
+
+    .floating-card {
+        position: absolute;
+        bottom: 20px;
+        left: -20px;
+        padding: 15px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px #d9b9c7;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .floating-card>span {
+        color: #d64f8a;
+        font-size: 25px;
+    }
+
+    /* Sections */
+    .section {
+        padding: 75px 7%;
+    }
+
+    .section-heading {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+        font-size: 35px;
+        margin-bottom: 8px;
+    }
+
+    .section-heading>p:last-child {
+        color: #777078;
+    }
+
+    /* Categories */
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .category-card {
+        height: 340px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+    }
+
+    .category-card img {
+        height: 100%;
+        transition: 0.4s;
+    }
+
+    .category-card:hover img {
+        transform: scale(1.06);
+    }
+
+    .category-card::after {
+        content: "";
+        position: absolute;
+        inset: 40% 0 0;
+        background: linear-gradient(transparent, #0009);
+    }
+
+    .category-label {
+        position: absolute;
+        z-index: 1;
+        bottom: 20px;
+        left: 20px;
+        color: white;
+    }
+
+    .category-label h3 {
+        font-size: 21px;
+    }
+
+    /* Products */
+    .products-section {
+        background: #fff3f8;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 25px;
+    }
+
+    .product-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px #e7c6d5;
+    }
+
+    .product-image {
+        position: relative;
+    }
+
+    .product-image img {
+        height: 300px;
+    }
+
+    .tag {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: #ffe4ef;
+        color: #c94f83;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+    }
+
+    .product-info {
+        padding: 18px;
+    }
+
+    .product-type {
+        color: #c94f83;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .product-info h3 {
+        margin: 7px 0 12px;
+    }
+
+    .product-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .price {
+        font-weight: bold;
+    }
+
+    .add-button {
+        color: #c94f83;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    /* Promotion */
+    .promo {
+        margin: 65px 7%;
+        padding: 55px;
+        background: linear-gradient(120deg, #e879a9, #f6b7d1);
+        color: white;
+        border-radius: 18px;
+    }
+
+    .promo .eyebrow {
+        color: white;
+    }
+
+    .promo h2 {
+        font-size: 42px;
+        line-height: 1.2;
+        margin-bottom: 15px;
+    }
+
+    .promo p:not(.eyebrow) {
+        margin-bottom: 22px;
+    }
+
+    .btn-light {
+        background: white;
+        color: #c94f83;
+    }
+
+    /* Footer */
+    footer {
+        background: #30232a;
+        color: white;
+        padding: 50px 7% 20px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1.5fr;
+        gap: 35px;
+        padding-bottom: 35px;
+    }
+
+    .footer-brand p,
+    .footer-links p,
+    .footer-links a {
+        color: #e0d1d9;
+        font-size: 13px;
+    }
+
+    .footer-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .footer-links h3 {
+        margin-bottom: 8px;
+    }
+
+    .footer-links a:hover {
+        color: #f6b7d1;
+    }
+
+    .copyright {
+        border-top: 1px solid #65515d;
+        padding-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        font-size: 12px;
+        color: #e0d1d9;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 900px) {
+        .navbar {
+            padding: 18px 4%;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .navbar nav {
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero {
+            padding: 45px 5%;
+            gap: 25px;
+        }
+
+        .category-grid {
+            gap: 12px;
+        }
+
+        .product-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 600px) {
+        .navbar {
+            justify-content: center;
+        }
+
+        .navbar .logo {
+            width: 100%;
+            text-align: center;
+        }
+
+        .navbar nav {
+            justify-content: center;
+            gap: 10px 15px;
+        }
+
+        .navbar nav a {
+            font-size: 12px;
+        }
+
+        .nav-button {
+            display: none;
+        }
+
+        .hero {
+            grid-template-columns: 1fr;
+            padding: 40px 6%;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+        }
+
+        .hero-image>img {
+            height: 320px;
+        }
+
+        .section {
+            padding: 50px 6%;
+        }
+
+        .section-heading h2 {
+            font-size: 29px;
+        }
+
+        .category-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .category-card {
+            height: 300px;
+        }
+
+        .product-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px 10px;
+        }
+
+        .product-image img {
+            height: 190px;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-info h3 {
+            font-size: 14px;
+        }
+
+        .product-bottom {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .promo {
+            margin: 30px 5%;
+            padding: 35px 7%;
+        }
+
+        .promo h2 {
+            font-size: 32px;
+        }
+
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+
+        .copyright {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="#home" class="logo">Velora<span>.</span></a>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#women">Women</a>
+            <a href="#men">Men</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a href="#shop" class="nav-button">Shop Now</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="eyebrow">NEW SEASON • NEW STYLE</p>
+            <h1>Fashion that<br>feels like <span>you.</span></h1>
+            <p class="hero-text">
+                Discover your style with our latest fashion
+                collection for women and men.
+            </p>
+            <a href="#shop" class="btn">Explore Collection</a>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85"
+                alt="Stylish fashion shopping">
+            <div class="floating-card">
+                <span>✦</span>
+                <div>
+                    <strong>New Collection</strong>
+                    <p>Made for your style</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section" id="categories">
+        <div class="section-heading">
+            <p class="eyebrow">FIND YOUR LOOK</p>
+            <h2>Shop by Category</h2>
+            <p>Explore styles made for every moment.</p>
+        </div>
+
+        <div class="category-grid">
+            <a href="#women" class="category-card">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=85"
+                    alt="Women's fashion">
+                <div class="category-label">
+                    <h3>Women's Fashion</h3>
+                    <span>Explore Collection ↗</span>
+                </div>
+            </a>
+
+            <a href="#men" class="category-card">
+                <img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=700&q=85"
+                    alt="Men's fashion">
+                <div class="category-label">
+                    <h3>Men's Fashion</h3>
+                    <span>Explore Collection ↗</span>
+                </div>
+            </a>
+
+            <a href="#shop" class="category-card">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=85"
+                    alt="Fashion outfits and clothing">
+                <div class="category-label">
+                    <h3>Latest Trends</h3>
+                    <span>Explore Collection ↗</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="section products-section" id="shop">
+        <div class="section-heading">
+            <p class="eyebrow">HANDPICKED FOR YOU</p>
+            <h2>Our Best Sellers</h2>
+            <p>Everyday essentials, elevated with style.</p>
+        </div>
+
+        <div class="product-grid">
+
+            <article class="product-card" id="women">
+                <div class="product-image">
+                    <span class="tag">Popular</span>
+                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=700&q=85"
+                        alt="Women's stylish outfit">
+                </div>
+                <div class="product-info">
+                    <p class="product-type">WOMEN'S WEAR</p>
+                    <h3>Chic Everyday Outfit</h3>
+                    <div class="product-bottom">
+                        <span class="price">Rs. 3,499</span>
+                        <a href="#contact" class="add-button">View Item ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <span class="tag">New</span>
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=85"
+                        alt="Elegant women's dress">
+                </div>
+                <div class="product-info">
+                    <p class="product-type">WOMEN'S WEAR</p>
+                    <h3>Elegant Pink Look</h3>
+                    <div class="product-bottom">
+                        <span class="price">Rs. 4,299</span>
+                        <a href="#contact" class="add-button">View Item ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" id="men">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=700&q=85"
+                        alt="Men's smart casual clothing">
+                </div>
+                <div class="product-info">
+                    <p class="product-type">MEN'S WEAR</p>
+                    <h3>Smart Casual Shirt</h3>
+                    <div class="product-bottom">
+                        <span class="price">Rs. 2,799</span>
+                        <a href="#contact" class="add-button">View Item ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=700&q=85"
+                        alt="Modern fashion outfit">
+                </div>
+                <div class="product-info">
+                    <p class="product-type">WOMEN'S WEAR</p>
+                    <h3>Modern Street Style</h3>
+                    <div class="product-bottom">
+                        <span class="price">Rs. 3,899</span>
+                        <a href="#contact" class="add-button">View Item ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85"
+                        alt="Fashion clothing collection">
+                </div>
+                <div class="product-info">
+                    <p class="product-type">MEN'S WEAR</p>
+                    <h3>Weekend Essentials</h3>
+                    <div class="product-bottom">
+                        <span class="price">Rs. 2,499</span>
+                        <a href="#contact" class="add-button">View Item ↗</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=700&q=85"
+                        alt="Stylish fashion handbag">
+                </div>
+                <div class="product-info">
+                    <p class="product-type">ACCESSORIES</p>
+                    <h3>Classic Everyday Bag</h3>
+                    <div class="product-bottom">
+                        <span class="price">Rs. 1,999</span>
+                        <a href="#contact" class="add-button">View Item ↗</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Promotional Banner -->
+    <section class="promo">
+        <div>
+            <p class="eyebrow">YOUR STYLE, YOUR STORY</p>
+            <h2>A little pink.<br>A lot of personality.</h2>
+            <p>Find pieces that make every day feel special.</p>
+            <a href="#shop" class="btn btn-light">Shop the Collection</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#home" class="logo">Velora<span>.</span></a>
+                <p>Fashion for everyone.<br>Confidence in every outfit.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Explore</h3>
+                <a href="#home">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#women">Women's Fashion</a>
+                <a href="#men">Men's Fashion</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Contact Us</h3>
+                <p>Email:Infoseoexpert600@gmail.com</p>
+                <p>Pakistan</p>
+                <a href="#home">Back to Top ↑</a>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>© 2026 Velora. All rights reserved.</p>
+            <p>Designed with ♡ and style.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
